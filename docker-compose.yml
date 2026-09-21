@@ -1,0 +1,4 @@
+# Vide pour l'instant — préparé pour Airflow 3 en M3 (orchestration).
+# Pas de service défini avant M3 : ne pas anticiper la config Airflow ici.
+
+services: {}
