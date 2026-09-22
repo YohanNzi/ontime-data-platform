@@ -1,9 +1,10 @@
 import csv
-import dlt
 
+import dlt
 
 CSV_PATH = "data/raw/On_Time_Reporting_Carrier_On_Time_Performance_(1987_present)_2024_1.csv"
 DB_PATH = "data/warehouse/ontime.duckdb"
+
 
 @dlt.resource(name="flights")
 def flights():
