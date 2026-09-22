@@ -1,0 +1,1 @@
+{"_invocation_id": "880fc27e-39e8-49d7-94cf-dc498d9a1071", "linked": {"0": {"name": "source.ontime.raw.flights", "type": "source", "succ": [1]}, "1": {"name": "model.ontime.stg_flights", "type": "model"}}}
