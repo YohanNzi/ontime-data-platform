@@ -23,9 +23,9 @@ Garde-fou anti-récidive : toute compétence listée sur un CV doit avoir une li
 
 ## Environnement
 
-- FS natif WSL (`~/dev/ontime-data-platform`), jamais `/mnt/c` — problèmes mmap/cache connus sur drvfs avec DuckDB/gros fichiers.
+- Multi-machine assumé (WSL le soir, Mac en journée) : repo `~/dev/ontime-data-platform` en FS natif sur les deux (jamais `/mnt/c` côté WSL — problèmes mmap/cache connus sur drvfs avec DuckDB/gros fichiers).
 - Python 3.12 via `uv`. Commandes : `just check` (lint + tests), `uv run <cmd>`.
-- `data/` gitignoré (CSV/Parquet volumineux, jamais commités).
+- `data/` gitignoré (CSV/Parquet/DuckDB volumineux, jamais commités) — régénéré à chaque machine via `scripts/fetch_month.sh <année> <mois>` + `uv run python -m ontime_data_platform.ingestion`.
 
 ## Concision
 - Réponses directes : pas de préambule de politesse, pas de reformulation de ma demande, pas de récap final non sollicité.
