@@ -6,7 +6,17 @@ CSV_PATH = "data/raw/On_Time_Reporting_Carrier_On_Time_Performance_(1987_present
 DB_PATH = "data/warehouse/ontime.duckdb"
 
 
-@dlt.resource(name="flights")
+@dlt.resource(
+    name="flights",
+    write_disposition="merge",
+    primary_key=(
+        "FlightDate",
+        "DOT_ID_Reporting_Airline",
+        "Flight_Number_Reporting_Airline",
+        "Origin",
+        "Dest",
+    ),
+)
 def flights():
     with open(CSV_PATH, encoding="utf-8") as f:
         reader = csv.DictReader(f)
