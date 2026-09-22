@@ -17,3 +17,9 @@ data/
 .pytest_cache/
 .coverage
 
+# dbt (artefacts générés, jamais commités)
+dbt/*/target/
+dbt/*/logs/
+dbt/*/dbt_packages/
+dbt/*/.user.yml
+
