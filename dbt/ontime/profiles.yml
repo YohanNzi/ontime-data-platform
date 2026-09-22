@@ -1,0 +1,7 @@
+ontime:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: "data/warehouse/ontime.duckdb"
+      threads: 4

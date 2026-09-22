@@ -1,0 +1,8 @@
+version: 2
+
+sources:
+  - name: raw
+    schema: raw
+    tables:
+      - name: flights
+        description: "Table brute chargée par le pipeline dlt (voir src/ontime_data_platform/ingestion.py)."
