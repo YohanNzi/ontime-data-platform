@@ -1,0 +1,73 @@
+version: 2
+
+models:
+  - name: dim_carrier
+    columns:
+      - name: carrier_id
+        tests:
+          - unique
+          - not_null
+      - name: carrier_code
+        tests:
+          - not_null
+
+  - name: dim_date
+    columns:
+      - name: date_day
+        tests:
+          - unique
+          - not_null
+
+  - name: dim_airport
+    columns:
+      - name: iata_code
+        tests:
+          - unique
+          - not_null
+      - name: name
+        tests:
+          - not_null
+
+  - name: fct_flights
+    columns:
+      - name: flight_date
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_date')
+              field: date_day
+      - name: carrier_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_carrier')
+              field: carrier_id
+      - name: origin
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_airport')
+              field: iata_code
+      - name: dest
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_airport')
+              field: iata_code
+      - name: flight_number
+        tests:
+          - not_null:
+                config:
+                  severity: warn
+      - name: cancelled
+        tests:
+          - accepted_values:
+              values: [0.0, 1.0]
+      - name: diverted
+        tests:
+          - accepted_values:
+              values: [0.0, 1.0]
+      - name: dep_del15
+        tests:
+          - accepted_values:
+              values: [0.0, 1.0]

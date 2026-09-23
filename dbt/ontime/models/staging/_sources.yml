@@ -6,3 +6,5 @@ sources:
     tables:
       - name: flights
         description: "Table brute chargée par le pipeline dlt (voir src/ontime_data_platform/ingestion.py)."
+      - name: airports
+        description: "Aéroports US (OurAirports), rechargée en entier à chaque run (write_disposition=replace). Voir src/ontime_data_platform/ingest_airports.py."
