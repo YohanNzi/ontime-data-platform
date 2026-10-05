@@ -1,0 +1,6 @@
+data/
+.venv/
+logs/
+config/
+.git/
+dbt/*/target/

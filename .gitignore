@@ -23,3 +23,8 @@ dbt/*/logs/
 dbt/*/dbt_packages/
 dbt/*/.user.yml
 
+
+# Airflow (secrets, logs et config générés localement)
+.env
+logs/
+config/
