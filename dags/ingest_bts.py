@@ -3,6 +3,7 @@ from datetime import timedelta
 import pendulum
 from airflow.providers.standard.operators.bash import BashOperator
 from airflow.sdk import dag
+from assets import BTS_FLIGHTS
 
 
 @dag(
@@ -31,6 +32,8 @@ def ingest_bts():
 
     ingest = BashOperator(
         task_id="ingest_duckdb",
+        outlets=[BTS_FLIGHTS],
+        pool="duckdb_writer",
         cwd="/opt/ontime",
         env={"PYTHONPATH": "/opt/ontime/src"},
         append_env=True,
