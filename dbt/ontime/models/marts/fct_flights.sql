@@ -1,4 +1,18 @@
-select
+{# Partitionnement/clustering : options BigQuery uniquement.
+     dbt-duckdb interprète aussi partition_by (écriture de fichiers partitionnés)
+     avec une autre syntaxe → ne pas lui transmettre. #}
+  {% if target.type == 'bigquery' %}
+  {{
+      config(
+          partition_by={
+              "field": "flight_date",
+              "data_type": "date",
+              "granularity": "month"
+          },
+          cluster_by=["carrier_id", "origin"]
+      )
+  }}
+  {% endif %} select
       flight_date,
       carrier_id,
       flight_number,
