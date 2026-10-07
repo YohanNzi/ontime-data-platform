@@ -34,40 +34,50 @@ models:
         tests:
           - not_null
           - relationships:
-              to: ref('dim_date')
-              field: date_day
+              arguments:
+                to: ref('dim_date')
+                field: date_day
       - name: carrier_id
         tests:
           - not_null
           - relationships:
-              to: ref('dim_carrier')
-              field: carrier_id
+              arguments:
+                to: ref('dim_carrier')
+                field: carrier_id
       - name: origin
         tests:
           - not_null
           - relationships:
-              to: ref('dim_airport')
-              field: iata_code
+              arguments:
+                to: ref('dim_airport')
+                field: iata_code
       - name: dest
         tests:
           - not_null
           - relationships:
-              to: ref('dim_airport')
-              field: iata_code
+              arguments:
+                to: ref('dim_airport')
+                field: iata_code
       - name: flight_number
         tests:
           - not_null:
-                config:
-                  severity: warn
+              config:
+                severity: warn
       - name: cancelled
         tests:
           - accepted_values:
-              values: [0.0, 1.0]
+              arguments:
+                values: [0.0, 1.0]
+                quote: false
       - name: diverted
         tests:
           - accepted_values:
-              values: [0.0, 1.0]
+              arguments:
+                values: [0.0, 1.0]
+                quote: false
       - name: dep_del15
         tests:
           - accepted_values:
-              values: [0.0, 1.0]
+              arguments:
+                values: [0.0, 1.0]
+                quote: false

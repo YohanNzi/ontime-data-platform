@@ -51,3 +51,23 @@ resource "google_service_account_iam_member" "dbt_impersonation" {
   role               = "roles/iam.serviceAccountTokenCreator"
   member             = "user:yohannzi.pro@gmail.com"
 }
+
+resource "google_bigquery_dataset" "raw" {
+  project    = var.project_id
+  dataset_id = "raw"
+  location   = var.region
+
+  delete_contents_on_destroy = true
+
+  labels = {
+    projet = "ontime"
+    env    = "sprint"
+  }
+}
+
+resource "google_bigquery_dataset_iam_member" "dbt_raw_reader" {
+  project    = google_bigquery_dataset.raw.project
+  dataset_id = google_bigquery_dataset.raw.dataset_id
+  role       = "roles/bigquery.dataViewer"
+  member     = "serviceAccount:${google_service_account.dbt_runner.email}"
+}
