@@ -1,6 +1,9 @@
 select
     -- identité du vol
     flight_date,
+    {% if target.type == 'bigquery' %}
+    flight_date_d,
+    {% endif %}
     day_of_week,
     dot_id_reporting_airline as carrier_id,
     reporting_airline as carrier_code,

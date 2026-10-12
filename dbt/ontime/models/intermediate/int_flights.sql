@@ -1,6 +1,10 @@
 select
       -- identité du vol
+      {% if target.type == 'bigquery' %}
+      flight_date_d as flight_date,
+      {% else %}
       cast(flight_date as date) as flight_date,
+      {% endif %}
       cast(nullif(day_of_week, '') as integer) as day_of_week,
       cast(nullif(carrier_id, '') as integer) as carrier_id,
       carrier_code,
