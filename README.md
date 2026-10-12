@@ -26,6 +26,7 @@ BTS (CSV mensuels)                     OurAirports (référentiel aéroports)
 | Rattrapage Airflow | **24/24 mois** rejoués, **2 pannes réseau réelles absorbées** par les reprises automatiques, 0 doublon |
 | Chargement BigQuery | 13,9 M de lignes en **9 s** (chargement par lots) |
 | Partitionnement | requête mensuelle type : **204 Mo → 17,6 Mo lus (−91 %)** |
+| Incrémental | `fct_flights` en `insert_overwrite` mensuel, source partitionnée : **2,4 Go → 404 Mo lus par mise à jour (−84 %)** |
 | Infrastructure | 8 ressources Terraform, **aucune clé de compte de service** |
 
 Le détail de chaque compétence et de sa preuve est dans [`SKILLS-LEDGER.md`](SKILLS-LEDGER.md).
@@ -72,6 +73,7 @@ Airflow : copier `.env.example` en `.env`, renseigner les secrets indiqués, pui
 ## Feuille de route
 
 - [x] Ingestion idempotente, modèle en étoile testé, orchestration Airflow, BigQuery + Terraform
-- [ ] Alerte en cas d'échec de tâche, modèles dbt incrémentaux
+- [x] Modèle incrémental (BigQuery, remplacement de partition) avec source partitionnée
+- [ ] Alerte en cas d'échec de tâche
 - [ ] Restitution Power BI
 - [ ] Flux temps réel (Pub/Sub, Dataflow), Spark
