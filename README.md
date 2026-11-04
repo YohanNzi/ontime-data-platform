@@ -74,6 +74,6 @@ Airflow : copier `.env.example` en `.env`, renseigner les secrets indiqués, pui
 
 - [x] Ingestion idempotente, modèle en étoile testé, orchestration Airflow, BigQuery + Terraform
 - [x] Modèle incrémental (BigQuery, remplacement de partition) avec source partitionnée
-- [ ] Alerte en cas d'échec de tâche
+- [x] Alerte Telegram en cas d'échec de tâche (vérifiée par échec injecté)
 - [ ] Restitution Power BI
 - [ ] Flux temps réel (Pub/Sub, Dataflow), Spark
