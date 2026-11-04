@@ -4,6 +4,7 @@ import pendulum
 from airflow.providers.standard.operators.bash import BashOperator
 from airflow.sdk import dag
 from assets import BTS_FLIGHTS
+from alerts import alert_on_failure
 
 
 @dag(
@@ -16,6 +17,7 @@ from assets import BTS_FLIGHTS
     default_args={
         "retries": 3,
         "retry_delay": timedelta(minutes=5),
+        "on_failure_callback": alert_on_failure,
     },
     tags=["bts", "ingestion"],
 )

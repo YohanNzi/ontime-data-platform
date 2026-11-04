@@ -1,6 +1,7 @@
 from airflow.providers.standard.operators.bash import BashOperator
 from airflow.sdk import dag
 from assets import BTS_FLIGHTS
+from alerts import alert_on_failure
 
 
 @dag(
@@ -9,6 +10,9 @@ from assets import BTS_FLIGHTS
     catchup=False,
     max_active_runs=1,
     tags=["dbt", "transformation"],
+    default_args={
+        "on_failure_callback": alert_on_failure,
+    },
 )
 def dbt_build():
     BashOperator(
