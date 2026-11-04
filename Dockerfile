@@ -14,3 +14,7 @@ RUN apt-get update \
 USER airflow
 COPY requirements-pipeline.txt /tmp/requirements-pipeline.txt
 RUN /opt/ontime-venv/bin/pip install --no-cache-dir -r /tmp/requirements-pipeline.txt
+# Provider Telegram dans l'environnement d'Airflow (pas le venv du pipeline),
+# épinglé par les constraints officielles pour ne pas casser les dépendances d'Airflow.
+RUN pip install --no-cache-dir "apache-airflow==${AIRFLOW_VERSION}" apache-airflow-providers-telegram \
+    --constraint "https://raw.githubusercontent.com/apache/airflow/constraints-${AIRFLOW_VERSION}/constraints-3.12.txt"
