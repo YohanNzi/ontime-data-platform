@@ -15,11 +15,7 @@ def alert_on_failure(context: Context) -> None:
     """Journalise l'échec définitif et envoie une alerte Telegram."""
     ti = context["task_instance"]
     exc = context.get("exception")
-    error = (
-        f"{type(exc).__name__}: {exc}"
-        if exc is not None
-        else "Exception non disponible"
-    )
+    error = f"{type(exc).__name__}: {exc}" if exc is not None else "Exception non disponible"
 
     logger.error(
         "Échec Airflow | dag=%s | task=%s | run=%s | essai=%s | erreur=%s",

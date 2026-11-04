@@ -1,7 +1,7 @@
 from airflow.providers.standard.operators.bash import BashOperator
 from airflow.sdk import dag
-from assets import BTS_FLIGHTS
 from alerts import alert_on_failure
+from assets import BTS_FLIGHTS
 
 
 @dag(
